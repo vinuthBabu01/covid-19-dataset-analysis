@@ -12,63 +12,7 @@ This dataset includes time series data tracking the number of people affected by
 * the number of people who have reportedly died while sick with Coronavirus
 * the number of people who have reportedly recovered from it
 
-# Sample Code
 
-This is sample code by using you can get started working with this dataset.
-
-```
-# import
-# imports
-import plotly.express as px
-import plotly.graph_objects as go
-import plotly.figure_factory as ff
-from plotly.subplots import make_subplots
-
-import folium
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-%matplotlib inline
-
-import math
-import random
-from datetime import timedelta
-import warnings
-warnings.filterwarnings('ignore')
-
-#color pallette
-cnf = '#393e46'
-dth = '#ff2e63'
-rec = '#21bf73'
-act = '#fe9801'
-```
-
-Let's code
-```
-# load the dataset
-df = pd.read_csv('Covid-19-Preprocessed-Dataset/preprocessed/covid_19_data_cleaned.csv', parse_dates=['Date'])
-
-country_daywise = pd.read_csv('Covid-19-Preprocessed-Dataset/preprocessed/country_daywise.csv', parse_dates=['Date'])
-countywise = pd.read_csv('Covid-19-Preprocessed-Dataset/preprocessed/countrywise.csv')
-daywise = pd.read_csv('Covid-19-Preprocessed-Dataset/preprocessed/daywise.csv', parse_dates=['Date'])
-
-# fill NA
-df['Province/State'] = df['Province/State'].fillna("")
-# grouping by date
-confirmed = df.groupby('Date').sum()['Confirmed'].reset_index()
-recovered = df.groupby('Date').sum()['Recovered'].reset_index()
-deaths = df.groupby('Date').sum()['Deaths'].reset_index()
-
-
-# See your first plot
-fig = go.Figure()
-fig.add_trace(go.Scatter(x = confirmed['Date'], y = confirmed['Confirmed'], mode = 'lines+markers', name = 'Confirmed', line = dict(color = "Orange", width = 2)))
-fig.add_trace(go.Scatter(x = recovered['Date'], y = recovered['Recovered'], mode = 'lines+markers', name = 'Recovered', line = dict(color = "Green", width = 2)))
-fig.add_trace(go.Scatter(x = deaths['Date'], y = deaths['Deaths'], mode = 'lines+markers', name = 'Deaths', line = dict(color = "Red", width = 2)))
-fig.update_layout(title = 'Worldwide Covid-19 Cases', xaxis_tickfont_size = 14, yaxis = dict(title = 'Number of Cases'))
-
-fig.show()
-```
 
 ## Data
 
